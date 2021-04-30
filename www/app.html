@@ -29,8 +29,32 @@
 <body data-mwf-application="MyApplication" class="mwf-loading-app">
 
 <!-- TODO-REPEATED: add new views here -->
-<div class="mwf-view mwf-view-initial" data-mwf-viewcontroller="MyInitialViewController">
-</div>
+<!--<div class="mwf-view mwf-view-initial" data-mwf-viewcontroller="MyInitialViewController">
+</div>-->
+<div class="mwf-view mwf-view-initial" id="mediaOverview" data-mwf-viewcontroller="ListviewViewController">
+    <header>
+        <button class="mwf-imgbutton mwf-img-sandwich mwf-left-align" id="resetDatabase"></button>
+        <h1 class="mwf-left-align">Medien</h1>
+        <button class="mwf-imgbutton mwf-img-plus mwf-right-align" id="addNewMediaItem"></button>
+    </header>
 
+
+        <main class="mwf-scrollview">
+            <ul class="mwf-listview" data-mwf-listitem-view="myapp-listitem">
+                <li class="mwf-listitem mwf-li-title-subtitle mwf-template" data-mwf-templatename="myapp-listitem">
+                    <img class="mwf-left-align" src="https://placeimg.com/100/100/city"/>
+                        <div class="mwf-li-titleblock">
+                            <h2>lorem ipsum</h2>
+                            <h3>dolor sit amet</h3>
+                        </div>
+                        <button class="mwf-imgbutton mwf-img-options-vertical mwf-right-align"></button>
+                </li>
+            </ul>
+    </main>
+
+    <footer>Footer
+    </footer>
+
+</div>
 </body>
 </html>
