@@ -3,13 +3,23 @@
  */
 import {mwf} from "../Main.js";
 import {entities} from "../Main.js";
+import {GenericCRUDImplLocal} from "../Main.js";
 
-export default class ViewControllerTemplate extends mwf.ViewController {
+export default class ListviewViewController extends mwf.ViewController {
 
     constructor() {
         super();
+        this.resetDatabaseElement = null;
 
-        console.log("ViewControllerTemplate()");
+       this.crudops =GenericCRUDImplLocal.newInstance("MediaItem");
+
+        console.log("ListviewViewController()");
+        this.items = [
+            new entities.MediaItem("m1","https://placeimg.com/100/100/city"),
+            new entities.MediaItem("m2","https://placeimg.com/200/150/music"),
+            new entities.MediaItem("m3","https://placeimg.com/150/200/culture")
+        ];
+        this.addNewMediaItemElement = null;
     }
 
     /*
@@ -18,6 +28,27 @@ export default class ViewControllerTemplate extends mwf.ViewController {
     async oncreate() {
         // TODO: do databinding, set listeners, initialise the view
 
+        this.addNewMediaItemElement =this.root.querySelector("#addNewMediaItem");
+
+        this.addNewMediaItemElement.onclick = (() => {
+            this.crudops.create(new entities.MediaItem("m","https://placeimg.com/100/100/city")).then((created) =>{
+                this.addToListview(created);
+            });
+
+            //this.addToListview(new entities.MediaItem("mnew","https://placeimg.com/100/100/city"));
+        });
+
+        this.initialiseListview(this.items);
+
+        this.resetDatabaseElement =this.root.querySelector("#resetDatabase");
+        this.resetDatabaseElement.onclick = (() => {
+            if(confirm("SolldieDatenbankwirklichzurückgesetztwerden?")) {
+                indexedDB.deleteDatabase("mwftutdb");}});
+
+
+        this.crudops.readAll().then((items) => {
+            this.initialiseListview(items);
+        });
 
         // call the superclass once creation is done
         super.oncreate();
@@ -29,6 +60,9 @@ export default class ViewControllerTemplate extends mwf.ViewController {
      */
     bindListItemView(viewid, itemview, item) {
         // TODO: implement how attributes of item shall be displayed in itemview
+        itemview.root.getElementsByTagName("img")[0].src = item.src;
+        itemview.root.getElementsByTagName("h2")[0].textContent =item.title+item._id;
+        itemview.root.getElementsByTagName("h3")[0].textContent =item.added;
     }
 
     /*
@@ -37,6 +71,7 @@ export default class ViewControllerTemplate extends mwf.ViewController {
      */
     onListItemSelected(listitem, listview) {
         // TODO: implement how selection of listitem shall be handled
+        alert("Element " + listitem.title + listitem._id + " wurde ausgewählt!");
     }
 
     /*
@@ -45,6 +80,7 @@ export default class ViewControllerTemplate extends mwf.ViewController {
      */
     onListItemMenuItemSelected(option, listitem, listview) {
         // TODO: implement how selection of option for listitem shall be handled
+
     }
 
     /*
@@ -65,6 +101,6 @@ export default class ViewControllerTemplate extends mwf.ViewController {
     async onReturnFromSubview(subviewid, returnValue, returnStatus) {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
     }
-
+/**/
 }
 
