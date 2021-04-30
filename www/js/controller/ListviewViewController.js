@@ -42,7 +42,7 @@ export default class ListviewViewController extends mwf.ViewController {
 
         this.resetDatabaseElement =this.root.querySelector("#resetDatabase");
         this.resetDatabaseElement.onclick = (() => {
-            if(confirm("SolldieDatenbankwirklichzurückgesetztwerden?")) {
+            if(confirm("Soll die Datenbank wirklich zurück gesetzt werden?")) {
                 indexedDB.deleteDatabase("mwftutdb");}});
 
 
