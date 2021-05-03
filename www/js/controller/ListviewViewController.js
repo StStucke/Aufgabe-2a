@@ -112,19 +112,35 @@ export default class ListviewViewController extends mwf.ViewController {
     }
 
     editItem(item) {
-        item.title = (item.title + item.title);
-       /* this.crudops.update(item._id,item).then(() => {
-            this.updateInListview(item._id,item);
-        });*/
-        item.update().then(() => {
-            this.updateInListview(item._id,item);
+        this.showDialog("mediaItemDialog", {
+            item: item,actionBindings: {
+                submitForm: ((event) => {
+                    event.original.preventDefault();
+                    item.update().then(() => {
+                        this.updateInListview(item._id,item);
+                    });
+                    this.hideDialog();
+                }),
+                deleteItem: ((event) => {
+                    this.deleteItem(item);
+                    this.hideDialog();})
+            }
         });
     }
 
     createNewItem() {
-        var newItem = new entities.MediaItem("m","https://placeimg.com/100/100/city");
-        newItem.create().then(() => {
-            this.addToListview(newItem);
+        var newItem =new entities.MediaItem("","https://placeimg.com/100/100/city");
+        this.showDialog("mediaItemDialog",{
+            item: newItem,
+            actionBindings: {
+                submitForm:((event) => {
+                        event.original.preventDefault();
+                    newItem.create().then(() => {
+                        this.addToListview(newItem);
+                    });
+                        this.hideDialog();
+            }
+            )}
         });
     }
 /**/
