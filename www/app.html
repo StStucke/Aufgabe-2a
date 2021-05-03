@@ -40,14 +40,14 @@
 
 
         <main class="mwf-scrollview">
-            <ul class="mwf-listview" data-mwf-listitem-view="myapp-listitem">
-                <li class="mwf-listitem mwf-li-title-subtitle mwf-template" data-mwf-templatename="myapp-listitem">
-                    <img class="mwf-left-align" src="https://placeimg.com/100/100/city"/>
+            <ul class="mwf-listview" data-mwf-listitem-view="myapp-listitem" data-mwf-listitem-menu="mediaItemMenu">
+                <li class="mwf-listitem mwf-li-title-subtitle mwf-template mwf-databind" data-mwf-templatename="myapp-listitem">
+                    <img class="mwf-left-align" src="{{src}}"/>
                         <div class="mwf-li-titleblock">
-                            <h2>lorem ipsum</h2>
-                            <h3>dolor sit amet</h3>
+                            <h2>{{title}}{{_id}}</h2>
+                            <h3>{{added}}</h3>
                         </div>
-                        <button class="mwf-imgbutton mwf-img-options-vertical mwf-right-align"></button>
+                        <button class="mwf-imgbutton mwf-img-options-vertical mwf-right-align mwf-listitem-menu-control"></button>
                 </li>
             </ul>
     </main>
@@ -55,6 +55,17 @@
     <footer>Footer
     </footer>
 
+</div>
+<div data-mwf-templatename="mediaItemMenu" class="mwf-listitem-menu mwf-template mwf-databind mwf-dialog mwf-popup ">
+    <header>
+        <h2 class="mwf-dyncontent">{{title}}{{_id}}</h2>
+    </header>
+    <main>
+        <ul>
+            <li class="mwf-li-singletitlemwf-menu-item" data-mwf-targetaction="deleteItem">Löschen</li>
+            <li class="mwf-li-singletitlemwf-menu-item" data-mwf-targetaction="editItem">Editieren</li>
+        </ul>
+    </main>
 </div>
 </body>
 </html>
