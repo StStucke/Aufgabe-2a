@@ -117,7 +117,8 @@ export default class ListviewViewController extends mwf.ViewController {
 
     editItem(item) {
         this.showDialog("mediaItemDialog", {
-            item: item,actionBindings: {
+            item: item,
+            actionBindings: {
                 submitForm: ((event) => {
                     event.original.preventDefault();
                     item.update().then(() => {
