@@ -69,13 +69,13 @@ export default class ListviewViewController extends mwf.ViewController {
      * for views with listviews: react to the selection of a listitem
      * TODO: delete if no listview is used or if item selection is specified by targetview/targetaction
      */
-    onListItemSelected(listitem, listview) {
+  /*  onListItemSelected(listitem, listview) {
         // TODO: implement how selection of listitem shall be handled
         this.nextView("mediaReadview",{item: listitem});
 
 
 
-    }
+    }*/
 
     /*
      * for views with listviews: react to the selection of a listitem menu option
@@ -103,13 +103,14 @@ export default class ListviewViewController extends mwf.ViewController {
      */
     async onReturnFromSubview(subviewid, returnValue, returnStatus) {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
+        if(subviewid == "mediaReadview" && returnValue &&returnValue.deletedItem) {
+            this.removeFromListview(returnValue.deletedItem._id);
+        }
+
     }
 
     deleteItem(item) {
-       /* this.crudops.delete(item._id).then(() => {
-            this.removeFromListview(item._id);
-        });*/
-        item.delete().then(() => {
+        item.delete(() => {
             this.removeFromListview(item._id);
         });
     }
