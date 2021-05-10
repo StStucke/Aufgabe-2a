@@ -29,9 +29,26 @@
 <body data-mwf-application="MyApplication" class="mwf-loading-app">
 
 <!-- TODO-REPEATED: add new views here -->
+
+<div class="mwf-view mwf-styling" id="mediaReadview">
+    <header>
+        <button class="mwf-imgbutton mwf-img-sandwich mwf-left-align"></button>
+        <h1 class="mwf-left-align">Titel</h1>
+        <button class="mwf-imgbutton mwf-img-delete mwf-right-align"></button>
+    </header>
+
+    <main class="mwf-scrollview">
+        <img src="https://placeimg.com/300/400/music"/>
+    </main>
+
+    <footer>
+        <button class="mwf-back mwf-imgbuttonmwf-img-backward"></button>
+    </footer>
+</div>
 <!--<div class="mwf-view mwf-view-initial" data-mwf-viewcontroller="MyInitialViewController">
 </div>-->
-<div class="mwf-view mwf-view-initial" id="mediaOverview" data-mwf-viewcontroller="ListviewViewController">
+
+<!--<div class="mwf-view mwf-view-initial" id="mediaOverview" data-mwf-viewcontroller="ListviewViewController">
     <header>
         <button class="mwf-imgbutton mwf-img-sandwich mwf-left-align" id="resetDatabase"></button>
         <h1 class="mwf-left-align">Medien</h1>
@@ -54,7 +71,7 @@
 
     <footer>Footer
     </footer>
-
+-->
 </div>
 <div data-mwf-templatename="mediaItemMenu" class="mwf-listitem-menu mwf-template mwf-databind mwf-dialog mwf-popup">
     <header>
@@ -67,11 +84,13 @@
         </ul>
     </main>
 </div>
-<div class="mwf-dialog mwf-popup mwf-template mwf-databind mwf-view-component "data-mwf-viewcontroller="GenericDialogTemplateViewController"data-mwf-templatename="mediaItemDialog">
+<div class="mwf-dialog mwf-popup mwf-template mwf-databind mwf-view-component " data-mwf-viewcontroller="GenericDialogTemplateViewController" data-mwf-templatename="mediaItemDialog">
     <main>
         <h2>{{#if item.created}}Medium editieren{{else}}Neues Medium{{/if}}</h2>
         <form id="itemEditForm" on-submit="submitForm">
-            <input name="title" autocomplete="off" class="mwf-autofocus" type="text" placeholder="Titel"required="required" value="{{item.title}}"/>
+
+                <input name="title" autocomplete="off" class="mwf-autofocus" type="text" placeholder="Titel"required="required" value="{{item.title}}"/>
+
             <div class="mwf-buttonbar">
                 <button class="mwf-left-align mwf-button" disabled="{{#unlessitem.created}}disabled{{/unless}}" type="button" on-click="deleteItem">Löschen</button>
                 <input class="mwf-button-prio mwf-right-align mwf-button" type="submit" value="{{#ifitem.created}}Ändern{{else}}Hinzufügen{{/if}}"/>
