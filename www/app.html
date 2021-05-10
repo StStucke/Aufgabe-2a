@@ -30,25 +30,14 @@
 
 <!-- TODO-REPEATED: add new views here -->
 
-<div class="mwf-view mwf-styling" id="mediaReadview">
-    <header>
-        <button class="mwf-imgbutton mwf-img-sandwich mwf-left-align"></button>
-        <h1 class="mwf-left-align">Titel</h1>
-        <button class="mwf-imgbutton mwf-img-delete mwf-right-align"></button>
-    </header>
 
-    <main class="mwf-scrollview">
-        <img src="https://placeimg.com/300/400/music"/>
-    </main>
-
-    <footer>
-        <button class="mwf-back mwf-imgbuttonmwf-img-backward"></button>
-    </footer>
-</div>
 <!--<div class="mwf-view mwf-view-initial" data-mwf-viewcontroller="MyInitialViewController">
 </div>-->
 
-<!--<div class="mwf-view mwf-view-initial" id="mediaOverview" data-mwf-viewcontroller="ListviewViewController">
+
+<!-- OVERVIEW -->
+
+<div class="mwf-view mwf-view-initial" id="mediaOverview" data-mwf-viewcontroller="ListviewViewController">
     <header>
         <button class="mwf-imgbutton mwf-img-sandwich mwf-left-align" id="resetDatabase"></button>
         <h1 class="mwf-left-align">Medien</h1>
@@ -56,9 +45,14 @@
     </header>
 
 
+    <!-- SCROLLVIEW -->
+
         <main class="mwf-scrollview">
+
+            <!-- LISTVIEW -->
+
             <ul class="mwf-listview" data-mwf-listitem-view="myapp-listitem" data-mwf-listitem-menu="mediaItemMenu">
-                <li class="mwf-listitem mwf-li-title-subtitle mwf-template mwf-databind" data-mwf-templatename="myapp-listitem">
+                <li class="mwf-listitem mwf-li-title-subtitle mwf-template mwf-databind" data-mwf-templatename="myapp-listitem" >
                     <img class="mwf-left-align" src="{{src}}"/>
                         <div class="mwf-li-titleblock">
                             <h2>{{title}}{{_id}}</h2>
@@ -71,7 +65,27 @@
 
     <footer>Footer
     </footer>
--->
+
+</div>
+
+<!-- READVIEW -->
+
+<div class="mwf-view " id="mediaReadview" data-mwf-viewcontroller="ReadviewViewController">
+    <div class="mwf-template mwf-databind" data-mwf-templatename="mediaReadviewTemplate">
+        <header>
+            <button class="mwf-imgbutton mwf-img-sandwich mwf-left-align"></button>
+            <h1 class="mwf-left-align">{{item.title}}</h1>
+            <button class="mwf-imgbutton mwf-img-delete mwf-right-align" on-click="deleteItem"></button>
+        </header>
+
+        <main class="mwf-scrollview">
+            <img src="{{item.src}}"/>
+        </main>
+
+        <footer>
+            <button class="mwf-back mwf-imgbuttonmwf-img-backward"></button>
+        </footer>
+    </div>
 </div>
 <div data-mwf-templatename="mediaItemMenu" class="mwf-listitem-menu mwf-template mwf-databind mwf-dialog mwf-popup">
     <header>
