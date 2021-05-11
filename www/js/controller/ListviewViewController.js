@@ -149,5 +149,23 @@ export default class ListviewViewController extends mwf.ViewController {
         });
     }
 /**/
+    deleteNow(item) {
+        this.showDialog("mediaDeleteDialog", {
+            item: item,
+            actionBindings: {
+                submitForm: ((event) => {
+                    event.original.preventDefault();
+                    item.update().then(() => {
+                        this.updateInListview(item._id,item);
+                    });
+                    this.hideDialog();
+                }),
+                deleteItem: ((event) => {
+                    this.deleteItem(item);
+                    this.hideDialog();})
+            }
+        });
+    }
+
 }
 

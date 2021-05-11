@@ -1,2 +1,7 @@
 /* TODO: add any application specific styling here */
 #mediaReadview img {width: 100%;max-width: 100%;}
+
+.delete-dialog{
+    color:black;
+    margin-left:10px;
+}

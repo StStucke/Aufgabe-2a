@@ -63,7 +63,7 @@
             </ul>
     </main>
 
-    <footer>Footer
+    <footer>
     </footer>
 
 </div>
@@ -83,7 +83,7 @@
         </main>
 
         <footer>
-            <button class="mwf-back mwf-imgbuttonmwf-img-backward"></button>
+            <button class="mwf-back mwf-imgbutton mwf-img-backward"></button>
         </footer>
     </div>
 </div>
@@ -94,7 +94,7 @@
     </header>
     <main>
         <ul>
-            <li class="mwf-li-singletitle mwf-menu-item" data-mwf-targetaction="deleteItem"  >Löschen</li>
+            <li class="mwf-li-singletitle mwf-menu-item" data-mwf-targetaction="deleteNow"  >Löschen</li>
             <li class="mwf-li-singletitle mwf-menu-item" data-mwf-targetaction="editItem">Editieren</li>
         </ul>
     </main>
@@ -107,13 +107,32 @@
                 <input name="title" autocomplete="off" class="mwf-autofocus" type="text" placeholder="Titel"required="required" value="{{item.title}}"/>
 
             <div class="mwf-buttonbar">
-                <button class="mwf-left-align mwf-button" disabled="{{#unless item.created}}disabled{{/unless}}" type="button" on-click="deleteItem">Löschen</button>
-                <input class="mwf-button-prio mwf-right-align mwf-button" type="submit" value="{{#if
-                item.created}}Ändern{{else}}Hinzufügen{{/if}}"/>
+                <button class="mwf-left-align mwf-button" disabled="{{#unless item.created}}disabled{{/unless}}" type="button" data-mwf-targetaction="deleteNow" >Löschen</button>
+                <input class="mwf-button-prio mwf-right-align mwf-button" type="submit" value="{{#if item.created}}Ändern{{else}}Hinzufügen{{/if}}"/>
             </div>
         </form>
     </main>
 </div>
+
+<div class="mwf-dialog mwf-popup mwf-template mwf-databind mwf-view-component " data-mwf-viewcontroller="GenericDialogTemplateViewController" data-mwf-templatename="mediaDeleteDialog">
+    <main>
+        <h2>Medium löschen</h2>
+        <form id="itemDeleteForm" on-submit="submitForm">
+
+            <label class="delete-dialog">Möchten Sie {{item.title}} wirklich löchen?</label>
+
+
+
+            <div class="mwf-buttonbar">
+                <input class="mwf-button-prio mwf-right-align mwf-button" type="submit" value="Abbrechen"/>
+                <button class="mwf-left-align mwf-button"  type="button" on-click="deleteItem">Löschen</button>
+
+            </div>
+
+        </form>
+    </main>
+</div>
+
 
 </body>
 </html>
